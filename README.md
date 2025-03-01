@@ -14,6 +14,7 @@ Symfony completions.
 require('cmp').setup({
   sources = {
     { name = 'form_options' },
+    { name = 'symfony_routes' },
   },
 })
 ```
@@ -96,3 +97,27 @@ This is rather hard to maintain, so duplicated FormType are not preserved.
 The plugin is activated for `php` filetypes.  
 The trigger character is a single quote, and the current buffer must `extends AbstractType`.  
 The completion is triggered only on the left side of `=>`.
+
+### Symfony routes
+
+The source is using `./var/cache/dev/url_generating_routes.php` file.
+
+This plugin is a very simple implementation, the autocomplete won't work
+if the above file doesn't exist.
+
+![Autocomplete](./docs/route.png)
+
+Routes are refreshed every 30 seconds.
+
+#### Triggers
+
+The plugin is activated for `php` and `twig` filetypes.  
+The trigger character is a single quote, and the line must contains
+`route`, `path` or `url`. This covers most of Symfony and twig
+functions used to generate URLs:
+- PHP
+  - redirectToRoute
+  - $router->generate
+- Twig
+  - path
+  - url
