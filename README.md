@@ -1,7 +1,9 @@
 # cmp-symfony
 
 [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) source for many
-Symfony completions.
+Symfony completions:
+- Symfony routes
+- Symfony form options
 
 ## Required deps
 - [fd](https://github.com/sharkdp/fd) for twig templates
