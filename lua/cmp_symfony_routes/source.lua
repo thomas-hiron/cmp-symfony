@@ -1,4 +1,5 @@
 local source = {}
+local utils = require('utils')
 
 local symfony_routes = {}
 local existing_routes = {}
@@ -47,14 +48,14 @@ function source.get_trigger_characters()
 end
 
 function source.complete(self, request, callback)
-  local line = vim.fn.getline('.')
   local triggers = { 'route', 'path', 'url' }
   local found = false
+  local text_before_cursor = utils.get_text_before_cursor()
 
   -- Trigger only if route, path or url is present on the line.
   -- This cover most php and twig url related functions.
   for k, trigger in pairs(triggers) do
-    if string.find(line:lower(), trigger) then
+    if string.find(text_before_cursor:lower(), trigger) then
       found = true
     end
   end
