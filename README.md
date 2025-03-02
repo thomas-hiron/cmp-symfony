@@ -3,8 +3,9 @@
 [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) source for many
 Symfony completions:
 - HTML classes
-- Symfony routes
 - Symfony form options
+- Symfony routes
+- Symfony translations
 
 ## Required deps
 - [fd](https://github.com/sharkdp/fd) for twig templates
@@ -19,6 +20,7 @@ require('cmp').setup({
     { name = 'form_options' },
     { name = 'html_class' },
     { name = 'symfony_routes' },
+    { name = 'symfony_translations' },
   },
 })
 ```
@@ -181,3 +183,33 @@ functions used to generate URLs:
 - Twig
   - path
   - url
+
+### Symfony translations
+
+The source is using `./var/cache/dev/translations/catalog.fr.SHA1.php` file.
+
+This plugin the autocomplete won't work if the above file doesn't exist.
+
+![Autocomplete](./docs/translation.png)
+
+Translations are refreshed every 60 seconds.
+
+#### Features
+- completes translation domains
+- documentation displays full french translation value
+- `->addFlash` only displays `flashes_messages` translations
+- `message` attribute only displays `validators` translations
+
+#### Triggers
+
+The plugin is activated for `php` and `twig` filetypes.  
+The trigger character is a single quote, and the line must contains
+`trans`, `addflash`, `message:`, `'label' =>` or `'choice_label' =>`. This covers most of Symfony and twig
+translation functions:
+- PHP
+  - $translation->trans
+  - $this->addFlash
+  - message attribute for validators
+  - form labels
+- Twig
+  - ''|trans({}, '')
