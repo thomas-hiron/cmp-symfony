@@ -11,6 +11,7 @@ Symfony completions:
 - Twig templates
 
 ## Required deps
+
 - [fd](https://github.com/sharkdp/fd) for twig templates
 - [jq](https://github.com/jqlang/jq) for form options
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for form options (with PHP parser)
@@ -35,10 +36,13 @@ require('cmp').setup({
 
 ## Available sources
 
-### Form options
+### 📋 Form options
 Form option completion.
 
+![Autocomplete](./docs/form_options.png)
+
 #### Prerequisite
+
 The completion is based on a file named `autocomplete_form_type.json`
 at the root of the project. It consists of a JSON array for each
 FormType as key and all available options as values.  
@@ -112,12 +116,14 @@ The plugin is activated for `php` filetypes.
 The trigger character is a single quote, and the current buffer must `extends AbstractType`.  
 The completion is triggered only on the left side of `=>`.
 
-### HTML classes
+### 📌 HTML classes
+
 This plugin autocompletes class tags using a pre-generated json file.  
 
-![Autocomplete](./docs/html.png)
+![Autocomplete](./docs/html_classes.png)
 
 #### Prerequisites
+
 A json file must be generated first. It contains one json object
 per line, with two keys:
 - _class_: the html class to autocomplete
@@ -131,6 +137,7 @@ Here is an example:
 ```
 
 #### Generate the json file
+
 The file is generated with this bash script:  
 <details>
 <summary>View script</summary>
@@ -168,14 +175,14 @@ The plugin is activated for `twig` and `html` filetypes.
 Autocompletion is triggered for double quotes and space
 characters.
 
-### Symfony routes
+### 🛣️ Symfony routes
 
 The source is using `./var/cache/dev/url_generating_routes.php` file.
 
 This plugin is a very simple implementation, the autocomplete won't work
 if the above file doesn't exist.
 
-![Autocomplete](./docs/route.png)
+![Autocomplete](./docs/symfony_routes.png)
 
 Routes are refreshed every 30 seconds.
 
@@ -192,17 +199,18 @@ functions used to generate URLs:
   - path
   - url
 
-### Symfony translations
+### 🔤 Symfony translations
 
 The source is using `./var/cache/dev/translations/catalog.fr.SHA1.php` file.
 
 This plugin the autocomplete won't work if the above file doesn't exist.
 
-![Autocomplete](./docs/translation.png)
+![Autocomplete](./docs/symfony_translations.png)
 
 Translations are refreshed every 60 seconds.
 
 #### Features
+
 - completes translation domains
 - documentation displays full french translation value
 - `->addFlash` only displays `flashes_messages` translations
@@ -222,10 +230,11 @@ translation functions:
 - Twig
   - ''|trans({}, '')
 
-### Twig constants
+### 🌾 Twig constants
+
 This plugin autocompletes PHP constants located in src directory for twig.  
 
-![Autocomplete](./docs/constants.png)
+![Autocomplete](./docs/twig_constants.png)
 
 Output is:  
 ```twig
@@ -239,16 +248,17 @@ Constants are refreshed every 60 seconds.
 The plugin is activated for `twig` filetype only.  
 The trigger character is a single quote, and the line must contains `constant` or `enum`.
 
-### Twig filters and functions
+### 🌾 Twig filters and functions
+
 This plugin autocompletes twig filters and functions located in 
 `src` directory.  
 The native filters and functions are also available.
 
 Filters:  
-![Autocomplete](./docs/filters.png)
+![Autocomplete](./docs/twig_filters.png)
 
 Functions:  
-![Autocomplete](./docs/functions.png)
+![Autocomplete](./docs/twig_functions.png)
 
 Filters and functions are refreshed every 30 seconds.
 
@@ -259,8 +269,11 @@ There are three trigger characters:
 - pipe triggers filters completion
 - space and open parenthesis trigger functions completion
 
-### Twig templates
+### 🌾 Twig templates
+
 Autocompletes twig templates located in project directory /templates.  
+
+![Autocomplete](./docs/twig_templates.png)
 
 Templates are refreshed every 30 seconds.
 
