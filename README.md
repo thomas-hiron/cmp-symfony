@@ -8,6 +8,7 @@ Symfony completions:
 - Symfony translations
 - Twig constants
 - Twig filters and functions
+- Twig templates
 
 ## Required deps
 - [fd](https://github.com/sharkdp/fd) for twig templates
@@ -27,6 +28,7 @@ require('cmp').setup({
     { name = 'symfony_translations' },
     { name = 'twig' },
     { name = 'twig_constants' },
+    { name = 'twig_templates' },
   },
 })
 ```
@@ -256,3 +258,20 @@ The plugin is activated for `twig` filetype.
 There are three trigger characters:
 - pipe triggers filters completion
 - space and open parenthesis trigger functions completion
+
+### Twig templates
+Autocompletes twig templates located in project directory /templates.  
+
+Templates are refreshed every 30 seconds.
+
+#### Triggers
+
+The plugin is activated for `php` and `twig` filetypes.  
+The trigger character is a single quote, and the line must contains
+`render` or `include`. This covers most of Symfony and twig
+functions used to generate URLs:
+- PHP
+  - render
+  - renderView
+- Twig
+  - include
