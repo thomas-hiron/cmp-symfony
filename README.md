@@ -6,6 +6,7 @@ Symfony completions:
 - Symfony form options
 - Symfony routes
 - Symfony translations
+- Twig constants
 - Twig filters and functions
 
 ## Required deps
@@ -13,7 +14,7 @@ Symfony completions:
 - [jq](https://github.com/jqlang/jq) for form options
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for form options (with PHP parser)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) to search for 
-filters and functions
+constants, filters and functions
 
 ## Global setup
 
@@ -25,6 +26,7 @@ require('cmp').setup({
     { name = 'symfony_routes' },
     { name = 'symfony_translations' },
     { name = 'twig' },
+    { name = 'twig_constants' },
   },
 })
 ```
@@ -217,6 +219,23 @@ translation functions:
   - form labels
 - Twig
   - ''|trans({}, '')
+
+### Twig constants
+This plugin autocompletes PHP constants located in src directory for twig.  
+
+![Autocomplete](./docs/constants.png)
+
+Output is:  
+```twig
+constant('App\\Voter\\MyVoter::CAN_EDIT')
+```
+
+Constants are refreshed every 60 seconds.
+
+#### Triggers
+
+The plugin is activated for `twig` filetype only.  
+The trigger character is a single quote, and the line must contains `constant` or `enum`.
 
 ### Twig filters and functions
 This plugin autocompletes twig filters and functions located in 
