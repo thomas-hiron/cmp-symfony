@@ -6,11 +6,14 @@ Symfony completions:
 - Symfony form options
 - Symfony routes
 - Symfony translations
+- Twig filters and functions
 
 ## Required deps
 - [fd](https://github.com/sharkdp/fd) for twig templates
 - [jq](https://github.com/jqlang/jq) for form options
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for form options (with PHP parser)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) to search for 
+filters and functions
 
 ## Global setup
 
@@ -21,6 +24,7 @@ require('cmp').setup({
     { name = 'html_class' },
     { name = 'symfony_routes' },
     { name = 'symfony_translations' },
+    { name = 'twig' },
   },
 })
 ```
@@ -213,3 +217,23 @@ translation functions:
   - form labels
 - Twig
   - ''|trans({}, '')
+
+### Twig filters and functions
+This plugin autocompletes twig filters and functions located in 
+`src` directory.  
+The native filters and functions are also available.
+
+Filters:  
+![Autocomplete](./docs/filters.png)
+
+Functions:  
+![Autocomplete](./docs/functions.png)
+
+Filters and functions are refreshed every 30 seconds.
+
+#### Triggers
+
+The plugin is activated for `twig` filetype.  
+There are three trigger characters:
+- pipe triggers filters completion
+- space and open parenthesis trigger functions completion
