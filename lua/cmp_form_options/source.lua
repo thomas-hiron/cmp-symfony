@@ -81,7 +81,7 @@ function source.complete(self, request, callback)
   end
 
   -- Extract form class name
-  local class_name = line:match(', ([A-Za-z]+Type)::class')
+  local class_name = line:match(', ([A-Za-z0-9]+Type)::class')
 
   -- Get corresponding form entry
   local handle = io.popen('jq -r ".' .. class_name ..'" ' .. filename .. ' 2>/dev/null')
