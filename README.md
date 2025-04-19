@@ -2,6 +2,7 @@
 
 [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) source for many
 Symfony completions:
+- Behat steps
 - HTML classes
 - Symfony form options
 - Symfony routes
@@ -16,13 +17,14 @@ Symfony completions:
 - [jq](https://github.com/jqlang/jq) for form options
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for form options (with PHP parser)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) to search for 
-constants, filters and functions
+behat steps, constants, filters and functions
 
 ## Global setup
 
 ```lua
 require('cmp').setup({
   sources = {
+    { name = 'behat' },
     { name = 'form_options' },
     { name = 'html_class' },
     { name = 'symfony_routes' },
@@ -35,6 +37,20 @@ require('cmp').setup({
 ```
 
 ## Available sources
+
+### 🎓 Behat steps
+
+Steps located in `vendor` and `behat` directories are handled.
+
+![Autocomplete](./docs/behat.png)
+
+Steps are refreshed every 60 seconds.
+
+#### Triggers
+
+The plugin is activated for `cucumber` filetype.  
+The trigger characters are `n` and `d`. This covers
+`Given`, `When`, `Then`, `And` keywords.
 
 ### 📋 Form options
 Form option completion.
