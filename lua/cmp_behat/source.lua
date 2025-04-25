@@ -3,7 +3,7 @@ local source = {}
 local steps = {}
 
 local function load_behat()
-  local handle = io.popen('rg "\\* @(Given|When|Then)" vendor --vimgrep')
+  local handle = io.popen('rg "\\* @(Given|When|Then)" vendor behat --no-messages --vimgrep')
   local result = handle:read("*a")
   handle:close()
 
