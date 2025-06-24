@@ -6,7 +6,7 @@ local filters = {}
 local functions = {}
 
 local function load_twig()
-  local handle = io.popen('rg --no-filename --no-line-number --no-heading --no-messages "new Twig(Filter|Function)" src')
+  local handle = io.popen('rg --no-filename --no-line-number --no-heading --no-messages "(new |#\\[As)Twig(Filter|Function)" src')
   local result = handle:read("*a")
   handle:close()
 
@@ -15,7 +15,7 @@ local function load_twig()
 
   for line in result:gmatch("[^\r\n]+") do
     local is_filter = line:match("TwigFilter") ~= nil
-    local match = line:match("new Twig[A-Za-z]+%('([A-Za-z0-9_]+)'")
+    local match = line:match("Twig[A-Za-z]+%('([A-Za-z0-9_]+)'")
 
     if is_filter then
       table.insert(filters, match)
