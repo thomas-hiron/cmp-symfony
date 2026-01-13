@@ -48,8 +48,7 @@ function source.complete(self, request, callback)
     return
   end
 
-  local ts_utils = require("nvim-treesitter.ts_utils")
-  local node = ts_utils.get_node_at_cursor()
+  local node = vim.treesitter.get_node();
 
   -- Can't handle treesitter node
   if not node then
