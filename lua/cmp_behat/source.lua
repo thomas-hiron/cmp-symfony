@@ -3,17 +3,15 @@ local source = {}
 local steps = {}
 
 local function load_behat()
-  local handle = io.popen('rg "^[ ]+(\\* @|#\\[)(Given|When|Then)" vendor behat --no-messages --vimgrep')
+  local handle = io.popen('rg "^[ ]+#\\[(.Behat.Step.)?(Given|When|Then)" vendor behat --no-messages --vimgrep')
   local result = handle:read("*a")
   handle:close()
 
   steps = {}
   for line in result:gmatch("[^\r\n]+") do
     local file_name = line:gsub(":.+", "")
-    -- Remove annotation
-    local step_full = line:gsub("^.+@[A-Za-z]+ ", "")
     -- Remove attribute
-    step_full = step_full:gsub("^.+#%[[A-Za-z]+%('", ""):gsub("'%)%]$", "")
+    local step_full = line:gsub("^.+#%[[A-Za-z\\]+%('", ""):gsub("'%)%]$", "")
     -- Remove escaped quotes
     step_full = step_full:gsub("\\'", "'")
 
